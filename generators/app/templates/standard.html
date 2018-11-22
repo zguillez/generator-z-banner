@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="initial-scale=1.0, width=device-width, user-scalable=no"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <link rel="stylesheet" type="text/css" href="lib/common.min.css">
+  <style media="" data-href="css/main.css">
+    #ad {
+      width: <%= width %>px;
+      height: <%= height %>px;
+    }
+    #content, #img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+    #content {
+      pointer-events: all;
+    }
+    #img {
+      background-image: url("default.jpg");
+    }
+  </style>
+</head>
+<body onload="startAd">
+<div id="ad" class="bg borde">
+  <section id="content">
+    <div id="img"></div>
+  </section>
+</div>
+<script>
+  function startAd() {
+    addEvent(document.querySelector('#content'), 'click', function() {
+      console.log('click-content');
+    });
+  }
+</script>
+<script type="text/javascript" src="lib/common.min.js"></script>
+</body>
+</html>
