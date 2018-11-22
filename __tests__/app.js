@@ -11,6 +11,6 @@ describe('generator-z-banner:app', () => {
   });
 
   it('creates files', () => {
-    assert.file(['index.html']);
+    assert.file(['300x600/index.html']);
   });
 });
