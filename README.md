@@ -3,7 +3,7 @@
 [![npm version](https://badge.fury.io/js/generator-z-banner.svg)](https://badge.fury.io/js/generator-z-banner)
 [![Build Status](https://travis-ci.org/zguillez/generator-z-banner.svg)](https://travis-ci.org/zguillez/generator-z-banner)
 [![Installs](https://img.shields.io/npm/dt/generator-z-banner.svg)](https://coveralls.io/r/zguillez/generator-z-banner)
-[![Gitter](https://badges.gitter.im/zguillez/generator-z-banner.svg)](https://gitter.im/zguillez/generator-z-banner?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Gitter](https://badges.gitter.im/zguillez/generator-z-banner.svg)](https://gitter.im/zguillez/generator-z-banner?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Join the chat at https://gitter.im/zguillez/generator-z-banner](https://badges.gitter.im/zguillez/generator-z-banner.svg)](https://gitter.im/zguillez/generator-z-banner?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 > [Zguillez](https://zguillez.io) | Guillermo de la Iglesia
 
