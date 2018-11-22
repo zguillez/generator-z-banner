@@ -12,12 +12,12 @@ Ad.config = function(config) {
 };
 Ad.init = function(config) {
   Ad.config(config);
-  let fondos = document.body.querySelectorAll('.fondo');
-  for (let i = 0; i < fondos.length; i ++) {
-    Ad['_fondo' + fondos[i].id.replace('fondo', '')] = fondos[i];
-    fondos[i].style.backgroundImage = 'url(images/fondo' + fondos[i].id.replace('fondo', '') + '.jpg)';
+  let bgs = document.body.querySelectorAll('.bg');
+  for (let i = 0; i < bgs.length; i ++) {
+    Ad['_bg' + bgs[i].id.replace('bg', '')] = bgs[i];
+    bgs[i].style.backgroundImage = 'url(images/bg' + bgs[i].id.replace('bg', '') + '.jpg)';
   }
-  document.querySelector('#loop').style.backgroundImage = document.querySelector('#fondo1').style.backgroundImage;
+  document.querySelector('#loop').style.backgroundImage = document.querySelector('#bg1').style.backgroundImage;
   let textos = document.body.querySelectorAll('.txt');
   for (let i = 0; i < textos.length; i ++) {
     Ad['_txt' + textos[i].id.replace('txt', '')] = textos[i];

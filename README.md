@@ -1,36 +1,61 @@
-# generator-z-banner [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
-> HTML5 Template for banner development (standar/sizmek/doubleclick)
+# generator-z-banner
 
-## Installation
+[![npm version](https://badge.fury.io/js/generator-z-banner.svg)](https://badge.fury.io/js/generator-z-banner)
+[![Build Status](https://travis-ci.org/zguillez/generator-z-banner.svg)](https://travis-ci.org/zguillez/generator-z-banner)
+[![Installs](https://img.shields.io/npm/dt/generator-z-banner.svg)](https://coveralls.io/r/zguillez/generator-z-banner)
+[![Gitter](https://badges.gitter.im/zguillez/generator-z-banner.svg)](https://gitter.im/zguillez/generator-z-banner?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-First, install [Yeoman](http://yeoman.io) and generator-z-banner using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
+> [Zguillez](https://zguillez.io) | Guillermo de la Iglesia
 
-```bash
+## HTML5 Template for banner development (standar/sizmek/doubleclick)
+
+![](http://zguillez.github.io/img/z-banner.png)
+
+# Getting Started
+## Install Yeoman
+
+```
 npm install -g yo
+```
+
+## Yeoman Generators
+To install generator-z-banner from npm, run:
+
+```
 npm install -g generator-z-banner
 ```
 
-Then generate your new project:
+Finally, initiate the generator:
 
-```bash
+```
 yo z-banner
 ```
 
-## Getting To Know Yeoman
+# Banner configuration
+* Select banner width
+* Select banner height
+* Select banner platform (standard, Sizmek, Doubleclick)
+* Select type of banner (static image or css animated)
 
- * Yeoman has a heart of gold.
- * Yeoman is a person with feelings and opinions, but is very easy to work with.
- * Yeoman can be too opinionated at times but is easily convinced not to be.
- * Feel free to [learn more about Yeoman](http://yeoman.io/).
+# Contributing and issues
+Contributors are welcome, please fork and send pull requests! If you have any ideas on how to make this project better then please submit an issue or send me an [email](mailto:mail@zguillez.io).
 
-## License
+# License
+©2018 [Zguillez.io](https://zguillez.io)
 
-MIT © [Guillermo de la Iglesia](https://zguillez.io)
+Original code licensed under [MIT](https://en.wikipedia.org/wiki/MIT_License) Open Source projects used within this project retain their original licenses.
 
+# Changelog
+### v1.0.0 (July 13, 2018)
+- Add prompt app type (static/form)
+- Add bin tools
 
-[npm-image]: https://badge.fury.io/js/generator-z-banner.svg
-[npm-url]: https://npmjs.org/package/generator-z-banner
-[travis-image]: https://travis-ci.org/zguillez/generator-z-banner.svg?branch=master
-[travis-url]: https://travis-ci.org/zguillez/generator-z-banner
-[daviddm-image]: https://david-dm.org/zguillez/generator-z-banner.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org/zguillez/generator-z-banner
+### v0.1.0 (November 22, 2018)
+- Template standard banner
+- Template sizmek banner
+- Template doubleclick banner
+
+Features:
+
+* image banner (jpg/gif)
+* html5 + css3 animation banner

@@ -40,20 +40,20 @@
   </style>
 </head>
 <body>
-<div id="ad" class="bg borde preload-images">
+<div id="ad" class="background borde preload-images">
   <section id="content">
     <div id="frame1" class="frame">
-      <div id="fondo1" class="fondo"></div>
+      <div id="bg1" class="bg"></div>
       <div id="txt1" class="txt animated in"></div>
       <div id="txt2" class="txt animated"></div>
     </div>
     <div id="frame2" class="frame">
-      <div id="fondo2" class="fondo animated"></div>
+      <div id="bg2" class="bg animated"></div>
       <div id="txt3" class="txt animated"></div>
       <div id="txt4" class="txt animated"></div>
       <div id="cta" class="cta animated"></div>
     </div>
-    <div id="logo" class="activo animated in"></div>
+    <div id="logo" class="active animated in"></div>
     <div id="loop" class="animated"></div>
   </section>
 </div>
@@ -87,7 +87,7 @@
     };
     Ad.animation = function() {
       Ad.transicion(2500, Ad._txt2, Ad._txt1, 'fadeInRight', 'fadeOut');
-      Ad.transicion(5000, Ad._fondo2, null, 'fadeIn', '');
+      Ad.transicion(5000, Ad._bg2, null, 'fadeIn', '');
       Ad.transicion(6000, Ad._txt3, null, 'fadeInRight', '');
       Ad.transicion(8500, Ad._txt4, Ad._txt3, 'fadeInRight', 'fadeOut');
       Ad.transicion(9500, Ad._cta, null, 'slideLeft', '');

@@ -132,8 +132,8 @@ module.exports = class extends Generator {
       });
     };
     if (this.props.type === 'css') {
-      createImage('fondo1', 'jpg', '', 0x00000000);
-      createImage('fondo2', 'jpg', '', 0xff220000);
+      createImage('bg1', 'jpg', '', 0x00000000);
+      createImage('bg2', 'jpg', '', 0xff220000);
       createImage('txt1', 'png', 'text1');
       createImage('txt2', 'png', 'text2');
       createImage('txt3', 'png', 'text3');
