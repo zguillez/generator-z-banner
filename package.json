@@ -78,7 +78,7 @@
   "scripts": {
     "pretest": "eslint . --fix",
     "precommit": "lint-staged",
-    "test": "jest"
+    "test": "jest --detectOpenHandles"
   },
   "repository": "zguillez/generator-z-banner",
   "license": "MIT"
