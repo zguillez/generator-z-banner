@@ -16,13 +16,13 @@ module.exports = class extends Generator {
       {
         type: 'text',
         name: 'width',
-        message: 'Which is the benner width?',
+        message: 'Which is the banner width?',
         default: '300'
       },
       {
         type: 'text',
         name: 'height',
-        message: 'Which is the benner height?',
+        message: 'Which is the banner height?',
         default: '600'
       },
       {
