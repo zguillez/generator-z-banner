@@ -52,10 +52,14 @@ module.exports = class extends Generator {
     this.props.height = Number(this.props.height);
     const folder = `${this.props.width}x${this.props.height}`;
     this.fs.copy(this.templatePath(`banner`), this.destinationPath(folder));
-    if (this.props.sdk !== 'standard') {
+    if (this.props.type === 'css') {
       this.fs.copy(
         this.templatePath(`anims.css`),
         this.destinationPath(`${folder}/lib/anims.css`)
+      );
+      this.fs.copy(
+        this.templatePath(`${this.props.sdk}-ad.js`),
+        this.destinationPath(`${folder}/lib/ad.js`)
       );
       this.fs.copy(this.templatePath(`images`), this.destinationPath(`${folder}/images`));
     }

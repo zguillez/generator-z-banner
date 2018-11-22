@@ -1,0 +1,37 @@
+#content, .frame, #loop, .fondo, .txt, .img, .cta {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+#logo {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.cta {
+  background-size: cover;
+  background-position: top right;
+  top: auto;
+  left: auto;
+  right: auto;
+  bottom: auto;
+}
+#content,
+.cta.in,
+.cta.fadeIn,
+.cta.fadeInUp,
+.cta.fadeInDown,
+.cta.fadeInLeft,
+.cta.fadeInRight,
+.cta.slideInCenter,
+.cta.slideUp,
+.cta.slideDown,
+.cta.slideLeft,
+.cta.slideRight {
+  pointer-events: all;
+}

@@ -29,20 +29,20 @@
     }
   </style>
 </head>
-<body onLoad="initEN()">
+<body>
 <div id="ad" class="bg borde">
   <section id="content">
     <div id="img"></div>
   </section>
 </div>
 <script>
-  function initEN() {
+  window.onload = function() {
     if (! Enabler.isInitialized()) {
       Enabler.addEventListener(studio.events.StudioEvent.INIT, enablerInitialized);
     } else {
       enablerInitialized();
     }
-  }
+  };
 
   function enablerInitialized() {
     if (! Enabler.isVisible()) {

@@ -9,7 +9,7 @@
   <link rel="stylesheet" type="text/css" href="lib/anims.css">
   <script src="lib/common.min.js"></script>
   <script src="lib/ad.js"></script>
-  <script src="https://secure-ds.serving-sys.com/BurstingScript/adKit/adkit.js"></script>
+  <script src="https://s0.2mdn.net/ads/studio/Enabler.js"></script>
   <style media="" data-href="css/main.css">
     #ad {
       width: <%= width %>px;
@@ -58,7 +58,21 @@
   </section>
 </div>
 <script>
-  adkit.onReady(startAd);
+  window.onload = function() {
+    if (! Enabler.isInitialized()) {
+      Enabler.addEventListener(studio.events.StudioEvent.INIT, enablerInitialized);
+    } else {
+      enablerInitialized();
+    }
+  };
+
+  function enablerInitialized() {
+    if (! Enabler.isVisible()) {
+      Enabler.addEventListener(studio.events.StudioEvent.VISIBLE, startAd);
+    } else {
+      startAd();
+    }
+  }
 
   function startAd() {
     Ad.init({

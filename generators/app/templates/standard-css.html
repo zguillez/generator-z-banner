@@ -58,7 +58,7 @@
   </section>
 </div>
 <script>
-  adkit.onReady(startAd);
+  window.onload = startAd;
 
   function startAd() {
     Ad.init({
@@ -67,9 +67,9 @@
       _logo: document.querySelector('#logo')
     });
     Ad.events = function() {
-      Ad.clickthrough(Ad._content, 'click-content');
-      Ad.clickthrough(Ad._logo, 'click-logo');
-      Ad.clickthrough(Ad._cta, 'click-cta');
+      Ad.clickthrough(Ad._content, 'click-content', 'https://google.es');
+      Ad.clickthrough(Ad._logo, 'click-logo', 'https://google.es');
+      Ad.clickthrough(Ad._cta, 'click-cta', 'https://google.es');
     };
     Ad.animation = function() {
       Ad.transicion(2500, Ad._txt2, Ad._txt1, 'fadeInRight', 'fadeOut');
