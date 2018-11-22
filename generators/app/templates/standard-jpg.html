@@ -28,13 +28,15 @@
     }
   </style>
 </head>
-<body onload="startAd">
+<body>
 <div id="ad" class="bg borde">
   <section id="content">
     <div id="img"></div>
   </section>
 </div>
 <script>
+  window.onload = startAd;
+
   function startAd() {
     addEvent(document.querySelector('#content'), 'click', function() {
       console.log('click-content');

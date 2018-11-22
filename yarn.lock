@@ -2007,6 +2007,14 @@ gh-got@^6.0.0:
     got "^7.0.0"
     is-plain-obj "^1.1.0"
 
+gifwrap@^0.7.5:
+  version "0.7.5"
+  resolved "https://registry.yarnpkg.com/gifwrap/-/gifwrap-0.7.5.tgz#dec7f4ee577c82d70de4eb4b418c04de8f45e627"
+  integrity sha1-3sf07ld8gtcN5OtLQYwE3o9F5ic=
+  dependencies:
+    image-q "^1.1.1"
+    omggif "^1.0.9"
+
 github-username@^4.0.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/github-username/-/github-username-4.1.0.tgz#cbe280041883206da4212ae9e4b5f169c30bf417"
@@ -2301,6 +2309,11 @@ ignore@^4.0.6:
   version "4.0.6"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-4.0.6.tgz#750e3db5862087b4737ebac8207ffd1ef27b25fc"
   integrity sha512-cyFDKrqc/YdcWFniJhzI42+AzS+gNwmUzOSFcRCQYwySuBBBy/KjuxWLZ/FHEH6Moq1NizMOBWyTcv8O4OZIMg==
+
+image-q@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/image-q/-/image-q-1.1.1.tgz#fc84099664460b90ca862d9300b6bfbbbfbf8056"
+  integrity sha1-/IQJlmRGC5DKhi2TALa/u7+/gFY=
 
 import-fresh@^2.0.0:
   version "2.0.0"
