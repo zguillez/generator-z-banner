@@ -1,5 +1,5 @@
 'use strict';
-/* eslint no-new: "off", no-unused-vars: "off" */
+/* eslint no-new: "off", no-unused-vars: "off", valid-jsdoc: "off" */
 const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
@@ -57,6 +57,7 @@ module.exports = class extends Generator {
         this.templatePath(`anims.css`),
         this.destinationPath(`${folder}/lib/anims.css`)
       );
+      this.fs.copy(this.templatePath(`images`), this.destinationPath(`${folder}/images`));
     }
     this.fs.copyTpl(
       this.templatePath(`${this.props.sdk}-${this.props.type}.html`),
@@ -98,5 +99,41 @@ module.exports = class extends Generator {
         });
       }
     });
+    /**
+     * Dummy Images
+     */
+    const createImage = (name, ext, text, color = 0x00000000) => {
+      new Jimp(this.props.width, this.props.height, color, (err, image) => {
+        if (!err) {
+          Jimp.loadFont(Jimp.FONT_SANS_32_WHITE).then(font => {
+            if (ext === 'jpg') {
+              image.opaque();
+            }
+            image.print(
+              font,
+              0,
+              0,
+              {
+                text: text,
+                alignmentX: Jimp.HORIZONTAL_ALIGN_CENTER,
+                alignmentY: Jimp.VERTICAL_ALIGN_MIDDLE
+              },
+              this.props.width,
+              this.props.height
+            );
+            image.quality(80);
+            image.write(`${folder}/images/${name}.${ext}`);
+          });
+        }
+      });
+    };
+    if (this.props.sdk !== 'standard') {
+      createImage('fondo1', 'jpg', '', 0x00000000);
+      createImage('fondo2', 'jpg', '', 0xff220000);
+      createImage('txt1', 'png', 'text1');
+      createImage('txt2', 'png', 'text2');
+      createImage('txt3', 'png', 'text3');
+      createImage('txt4', 'png', 'text4');
+    }
   }
 };

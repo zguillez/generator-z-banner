@@ -1,0 +1,199 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="initial-scale=1.0, width=device-width, user-scalable=no"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <link rel="stylesheet" type="text/css" href="lib/common.min.css">
+  <link rel="stylesheet" type="text/css" href="lib/anims.css">
+  <script src="lib/common.min.js"></script>
+  <script src="https://secure-ds.serving-sys.com/BurstingScript/adKit/adkit.js"></script>
+  <style media="" data-href="css/main.css">
+    #ad {
+      width: 300px;
+      height: 600px;
+    }
+    #content, .frame, #loop, .fondo, .txt, .img, .cta {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+    .preload-images {
+      background: url('images/fondo1.jpg') no-repeat -9999px -9999px,
+      url('images/cta1_.png') no-repeat -9999px -9999px;
+    }
+    #content {
+      pointer-events: all;
+    }
+    #logo {
+      position: absolute;
+      background-image: url('images/logo.png');
+      background-repeat: no-repeat;
+      background-size: contain;
+      top: 20px;
+      left: 20px;
+      width: 62px;
+      height: 21px;
+    }
+    .cta {
+      background-size: cover;
+      background-position: top right;
+      top: 190px;
+      left: 70px;
+      right: auto;
+      bottom: auto;
+      width: 165px;
+      height: 35px;
+    }
+    #cta1 {
+      background-image: url('images/cta1.png');
+    }
+    #cta1:hover {
+      background-image: url('images/cta1_.png');
+    }
+  </style>
+</head>
+<body>
+<div id="ad" class="bg borde preload-images">
+  <section id="content">
+    <div id="frame1" class="frame">
+      <div id="fondo1" class="fondo"></div>
+      <div id="txt1" class="txt animated in"></div>
+      <div id="txt2" class="txt animated"></div>
+    </div>
+    <div id="frame2" class="frame">
+      <div id="fondo2" class="fondo animated"></div>
+      <div id="txt3" class="txt animated"></div>
+      <div id="txt4" class="txt animated"></div>
+    </div>
+    <div id="logo" class="activo animated in"></div>
+    <div id="loop" class="animated"></div>
+  </section>
+</div>
+<script>
+  adkit.onReady(startAd);
+
+  function startAd() {
+    App = {
+      loopsMax: 1,
+      _initials: document.body.querySelectorAll('.in'),
+      _ad: document.querySelector('#ad'),
+      _content: document.querySelector('#content'),
+      _cta: document.querySelector('.cta'),
+      _logo: document.querySelector('#logo'),
+      _loop: document.querySelector('#loop')
+    };
+    let fondos = document.body.querySelectorAll('.fondo');
+    for (let i = 0; i < fondos.length; i ++) {
+      App['_fondo' + fondos[i].id.replace('fondo', '')] = fondos[i];
+      fondos[i].style.backgroundImage = 'url(images/fondo' + fondos[i].id.replace('fondo', '') + '.jpg)';
+    }
+    document.querySelector('#loop').style.backgroundImage = document.querySelector('#fondo1').style.backgroundImage;
+    let textos = document.body.querySelectorAll('.txt');
+    for (let i = 0; i < textos.length; i ++) {
+      App['_txt' + textos[i].id.replace('txt', '')] = textos[i];
+      textos[i].style.backgroundImage = 'url(images/txt' + textos[i].id.replace('txt', '') + '.png)';
+    }
+    let images = document.body.querySelectorAll('.img');
+    for (let i = 0; i < images.length; i ++) {
+      App['_img' + images[i].id.replace('img', '')] = images[i];
+      images[i].style.backgroundImage = 'url(images/img' + images[i].id.replace('img', '') + '.png)';
+    }
+    App.createDispatchEvents = function() {
+      /* addEvent(App._content, 'click', function() {
+        console.log('click-content');
+        EB.clickthrough('CONTENT-CLICK');
+      });
+      addEvent(App._logo, 'click', function() {
+        console.log('click-logo');
+        EB.clickthrough('LOGO-CLICK');
+      });
+      addEvent(App._cta, 'click', function() {
+        console.log('click-cta');
+        EB.clickthrough('CTA-CLICK');
+      });*/
+    };
+    App.animacion = function() {
+      App.transicion(2500, App._txt2, App._txt1, 'fadeInRight', 'fadeOut');
+      App.transicion(5000, App._fondo2, null, 'fadeIn', '');
+      App.transicion(6000, App._txt3, null, 'fadeInRight', '');
+      App.transicion(8500, App._txt4, App._txt3, 'fadeInRight', 'fadeOut');
+      //App.transicion(9000, App._cta, null, 'fadeIn', '');
+      App.doLoop(12000);
+    };
+    App.transicion = function(time, itemIn, itemOut, aniIn, aniOut, wait) {
+      let _wait = wait || 800;
+      setTimeout(function() {
+        if (itemOut) {
+          App.clean(itemOut);
+          classie.add(itemOut, aniOut);
+          setTimeout(function() {
+            classie.remove(itemOut, aniOut);
+          }, _wait + 200);
+          if (itemIn) {
+            setTimeout(function() {
+              classie.remove(itemIn, aniOut);
+              classie.add(itemIn, aniIn);
+            }, _wait);
+          }
+        } else {
+          if (itemIn) {
+            classie.add(itemIn, aniIn);
+          }
+        }
+      }, time);
+    };
+    App.doLoop = function(wait) {
+      setTimeout(function() {
+        if (App.loop < App.loopsMax || App.loopsMax < 0) {
+          App.transicion(500, App._loop, null, 'fadeIn', '');
+          setTimeout(function() {
+            let items = document.body.querySelectorAll('.animated');
+            for (let i = 0; i < items.length; ++ i) {
+              (items[i] !== App._loop) ? App.clean(items[i]) : null;
+            }
+          }, 1000);
+          setTimeout(function() {
+            for (let i = 0; i < App._initials.length; ++ i) {
+              classie.add(App._initials[i], 'in');
+            }
+          }, 1250);
+          setTimeout(function() {
+            classie.add(App._loop, 'fadeOut');
+          }, 1500);
+          setTimeout(function() {
+            App.clean(App._loop);
+          }, 2000);
+          setTimeout(function() {
+            App.loop ++;
+            App.animacion();
+          }, 2000);
+        }
+      }, wait);
+    };
+    App.clean = function(obj) {
+      classie.remove(obj, 'in');
+      classie.remove(obj, 'fadeIn');
+      classie.remove(obj, 'fadeInUp');
+      classie.remove(obj, 'fadeInDown');
+      classie.remove(obj, 'fadeInLeft');
+      classie.remove(obj, 'fadeInRight');
+      classie.remove(obj, 'fadeOut');
+      classie.remove(obj, 'slideInCenter');
+      classie.remove(obj, 'slideUp');
+      classie.remove(obj, 'slideDown');
+      classie.remove(obj, 'slideLeft');
+      classie.remove(obj, 'slideRight');
+    };
+    App.loop = 0;
+    App.createDispatchEvents();
+    App.animacion();
+  }
+</script>
+</body>
+</html>
