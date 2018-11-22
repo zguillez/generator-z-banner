@@ -57,21 +57,20 @@ module.exports = class extends Generator {
     new Jimp(this.props.width, this.props.height, 0x00000000, (err, image) => {
       if (!err) {
         Jimp.loadFont(Jimp.FONT_SANS_32_WHITE).then(font => {
-          image
-            .print(
-              font,
-              0,
-              0,
-              {
-                text: folder,
-                alignmentX: Jimp.HORIZONTAL_ALIGN_CENTER,
-                alignmentY: Jimp.VERTICAL_ALIGN_MIDDLE
-              },
-              Number(this.props.width),
-              Number(this.props.height)
-            )
-            .quality(80)
-            .write(`${folder}/default.jpg`);
+          image.print(
+            font,
+            0,
+            0,
+            {
+              text: folder,
+              alignmentX: Jimp.HORIZONTAL_ALIGN_CENTER,
+              alignmentY: Jimp.VERTICAL_ALIGN_MIDDLE
+            },
+            Number(this.props.width),
+            Number(this.props.height)
+          );
+          image.quality(80);
+          image.write(`${folder}/default.jpg`);
         });
       }
     });
