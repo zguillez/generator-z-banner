@@ -1,8 +1,8 @@
 {
   "name": "generator-z-banner",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "HTML5 Templates for banner development (standard/sizmek/doubleclick)",
-  "homepage": "",
+  "homepage": "https://zguillez.tools",
   "author": {
     "name": "Guillermo de la Iglesia",
     "email": "zguillez@gmail.com",

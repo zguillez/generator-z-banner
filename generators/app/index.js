@@ -71,6 +71,12 @@ module.exports = class extends Generator {
         height: this.props.height
       }
     );
+    if (this.props.sdk === 'sizmek') {
+      this.fs.copy(
+        this.templatePath(`config.js`),
+        this.destinationPath(`${folder}/config.js`)
+      );
+    }
     /**
      * Img backup
      */

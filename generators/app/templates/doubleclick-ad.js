@@ -84,18 +84,14 @@ Ad.doLoop = function(wait) {
   }, wait);
 };
 Ad.clean = function(obj) {
-  classie.remove(obj, 'in');
-  classie.remove(obj, 'fadeIn');
-  classie.remove(obj, 'fadeInUp');
-  classie.remove(obj, 'fadeInDown');
-  classie.remove(obj, 'fadeInLeft');
-  classie.remove(obj, 'fadeInRight');
-  classie.remove(obj, 'fadeOut');
-  classie.remove(obj, 'slideUp');
-  classie.remove(obj, 'slideDown');
-  classie.remove(obj, 'slideLeft');
-  classie.remove(obj, 'slideRight');
-  classie.remove(obj, 'slideInCenter');
+  const fx = [
+    'in', 'fadeIn', 'fadeOut', 'fadeInUp', 'fadeInDown', 'fadeInLeft', 'fadeInRight', 'fadeInShortUp',
+    'fadeInShortDown', 'fadeInShortLeft', 'fadeInShortRight', 'fadeInLongUp', 'fadeInLongDown', 'fadeInLongLeft',
+    'fadeInLongRight', 'slideUp', 'slideDown', 'slideLeft', 'slideRight', 'slideInCenter'
+  ];
+  for (let i = 0; i < fx.length; i ++) {
+    classie.remove(obj, fx[i]);
+  }
 };
 Ad.events = function() {};
 Ad.animation = function() {};
