@@ -1,4 +1,4 @@
-#content, .frame, #loop, .bg, .txt, .img, .cta {
+#content, #content div {
   position: absolute;
   top: 0;
   left: 0;
@@ -8,12 +8,12 @@
   background-repeat: no-repeat;
   background-size: contain;
 }
-#logo {
+#content div#logo {
   position: absolute;
   background-repeat: no-repeat;
   background-size: contain;
 }
-.cta {
+#content div.cta {
   background-size: cover;
   background-position: top right;
   top: auto;
@@ -22,16 +22,16 @@
   bottom: auto;
 }
 #content,
-.cta.in,
-.cta.fadeIn,
-.cta.fadeInUp,
-.cta.fadeInDown,
-.cta.fadeInLeft,
-.cta.fadeInRight,
-.cta.slideInCenter,
-.cta.slideUp,
-.cta.slideDown,
-.cta.slideLeft,
-.cta.slideRight {
+#content div.cta.in,
+#content div.cta.fadeIn,
+#content div.cta.fadeInUp,
+#content div.cta.fadeInDown,
+#content div.cta.fadeInLeft,
+#content div.cta.fadeInRight,
+#content div.cta.slideUp,
+#content div.cta.slideDown,
+#content div.cta.slideLeft,
+#content div.cta.slideRight,
+#content div.cta.slideInCenter {
   pointer-events: all;
 }

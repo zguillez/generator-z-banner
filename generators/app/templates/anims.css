@@ -4,164 +4,62 @@
   animation-fill-mode: both;
   opacity: 0;
 }
-.in {
-  opacity: 1;
-}
-.fadeInUp {
-  animation-name: fadeInUp;
-}
-.fadeIn {
-  animation-name: fadeIn;
-}
+.slow { animation-duration: 1s; }
+/* fade */
+.in { opacity: 1; }
+.fadeIn { animation-name: fadeIn; }
+.fadeInUp { animation-name: fadeInUp; }
+.fadeInDown { animation-name: fadeInDown; }
+.fadeInLeft { animation-name: fadeInLeft; }
+.fadeInRight { animation-name: fadeInRight; }
+.fadeOut { animation-name: fadeOut; }
 @keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 @keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translate(0, 10%);
-  }
-
-  100% {
-    opacity: 1;
-    transform: none;
-  }
-}
-.fadeInDown {
-  animation-name: fadeInDown;
+  0% { opacity: 0; transform: translate(0, 10%); }
+  100% { opacity: 1; transform: none; }
 }
 @keyframes fadeInDown {
-  0% {
-    opacity: 0;
-    transform: translate(0, -10%);
-  }
-
-  100% {
-    opacity: 1;
-    transform: none;
-  }
-}
-.fadeInLeft {
-  animation-name: fadeInLeft;
+  0% { opacity: 0; transform: translate(0, -10%); }
+  100% { opacity: 1; transform: none; }
 }
 @keyframes fadeInLeft {
-  0% {
-    opacity: 0;
-    transform: translate(10%, 0);
-  }
-
-  100% {
-    opacity: 1;
-    transform: none;
-  }
-}
-.fadeInRight {
-  animation-name: fadeInRight;
+  0% { opacity: 0; transform: translate(10%, 0); }
+  100% { opacity: 1; transform: none; }
 }
 @keyframes fadeInRight {
-  0% {
-    opacity: 0;
-    transform: translate(-10%, 0);
-  }
-
-  100% {
-    opacity: 1;
-    transform: none;
-  }
-}
-.fadeOut {
-  animation-name: fadeOut;
+  0% { opacity: 0; transform: translate(-10%, 0); }
+  100% { opacity: 1; transform: none; }
 }
 @keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-  }
+  0% { opacity: 1; }
+  100% { opacity: 0; }
 }
-.slideInCenter {
-  animation-name: slideInCenter;
-
-}
-@keyframes slideInCenter {
-  0% {
-    opacity: 0;
-    transform: scaleX(0.1);
-  }
-
-  100% {
-    opacity: 1;
-    transform: none;
-  }
-}
-.slideUp {
-  animation-duration: 0.5s;
-  animation-fill-mode: both;
-  animation-name: slideUp;
-
+/* slide */
+.slideUp { animation-name: slideUp; }
+.slideDown {  animation-name: slideDown; }
+.slideLeft { animation-name: slideLeft; }
+.slideRight { animation-duration: 1s; animation-name: slideRight; }
+.slideInCenter { animation-name: slideInCenter; }
+@keyframes slideDown {
+  0% { opacity: 1; transform: translate(0, -100%); }
+  100% { opacity: 1; transform: none; }
 }
 @keyframes slideUp {
-  0% {
-    transform: translate(100%, 0);
-  }
-
-  100% {
-    transform: none;
-  }
-}
-.slideDown {
-  animation-duration: 1s;
-  animation-name: slideDown;
-
-}
-@keyframes slideDown {
-  0% {
-    opacity: 1;
-    transform: translate(0, -100%);
-  }
-
-  100% {
-    opacity: 1;
-    transform: none;
-  }
-}
-.slideLeft {
-  animation-duration: 1s;
-  animation-name: slideLeft;
-
+  0% { transform: translate(100%, 0); }
+  100% { transform: none; }
 }
 @keyframes slideLeft {
-  0% {
-    opacity: 1;
-    transform: translate(100%, 0);
-  }
-
-  100% {
-    opacity: 1;
-    transform: none;
-  }
-}
-.slideRight {
-  animation-duration: 1s;
-  animation-name: slideRight;
-
+  0% { opacity: 1; transform: translate(100%, 0); }
+  100% { opacity: 1; transform: none; }
 }
 @keyframes slideRight {
-  0% {
-    opacity: 1;
-    transform: translate(-100%, 0);
-  }
-
-  100% {
-    opacity: 1;
-    transform: none;
-  }
+  0% { opacity: 1; transform: translate(-100%, 0); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes slideInCenter {
+  0% { opacity: 0; transform: scaleX(0.1); }
+  100% { opacity: 1; transform: none; }
 }

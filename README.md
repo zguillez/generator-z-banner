@@ -7,7 +7,7 @@
 
 > [Zguillez](https://zguillez.io) | Guillermo de la Iglesia
 
-## HTML5 Template for banner development (standar/sizmek/doubleclick)
+## HTML5 Template for banner development (standard/sizmek/doubleclick)
 
 ![](http://zguillez.github.io/img/z-banner.png)
 

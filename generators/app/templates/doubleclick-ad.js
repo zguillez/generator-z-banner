@@ -91,11 +91,11 @@ Ad.clean = function(obj) {
   classie.remove(obj, 'fadeInLeft');
   classie.remove(obj, 'fadeInRight');
   classie.remove(obj, 'fadeOut');
-  classie.remove(obj, 'slideInCenter');
   classie.remove(obj, 'slideUp');
   classie.remove(obj, 'slideDown');
   classie.remove(obj, 'slideLeft');
   classie.remove(obj, 'slideRight');
+  classie.remove(obj, 'slideInCenter');
 };
 Ad.events = function() {};
 Ad.animation = function() {};
