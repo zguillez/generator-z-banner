@@ -51,6 +51,15 @@ module.exports = class extends Generator {
     this.props.width = Number(this.props.width);
     this.props.height = Number(this.props.height);
     const folder = `${this.props.width}x${this.props.height}`;
+    this.fs.copyTpl(
+      this.templatePath(`package.json`),
+      this.destinationPath(`package.json`),
+      {
+        width: this.props.width,
+        height: this.props.height
+      }
+    );
+    this.fs.copy(this.templatePath(`.eslintrc.js`), this.destinationPath(`.eslintrc.js`));
     this.fs.copy(this.templatePath(`banner`), this.destinationPath(folder));
     if (this.props.type === 'css') {
       this.fs.copy(
@@ -145,5 +154,13 @@ module.exports = class extends Generator {
       createImage('txt3', 'png', 'text3');
       createImage('txt4', 'png', 'text4');
     }
+  }
+
+  install() {
+    this.installDependencies({
+      bower: false,
+      npm: false,
+      yarn: true
+    });
   }
 };

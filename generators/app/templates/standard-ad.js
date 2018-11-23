@@ -7,7 +7,9 @@ Ad.config = function(config) {
   Ad._content = document.querySelector('#content');
   Ad._loop = document.querySelector('#loop');
   for (let data in config) {
-    Ad[data] = config[data];
+    if (Object.prototype.hasOwnProperty.call(config, data)) {
+      Ad[data] = config[data];
+    }
   }
 };
 Ad.init = function(config) {
@@ -87,7 +89,7 @@ Ad.clean = function(obj) {
   const fx = [
     'in', 'fadeIn', 'fadeOut', 'fadeInUp', 'fadeInDown', 'fadeInLeft', 'fadeInRight', 'fadeInShortUp',
     'fadeInShortDown', 'fadeInShortLeft', 'fadeInShortRight', 'fadeInLongUp', 'fadeInLongDown', 'fadeInLongLeft',
-    'fadeInLongRight', 'slideUp', 'slideDown', 'slideLeft', 'slideRight', 'slideInCenter'
+    'fadeInLongRight', 'slideUp', 'slideDown', 'slideLeft', 'slideRight', 'slideInCenter',
   ];
   for (let i = 0; i < fx.length; i ++) {
     classie.remove(obj, fx[i]);

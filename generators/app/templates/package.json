@@ -1,0 +1,22 @@
+{
+  "name": "BannerCampaign",
+  "version": "0.1.0",
+  "description": "Banner campaign",
+  "scripts": {
+    "test": "banner=<%= width %>x<%= height %> yarn serve",
+    "lint": "eslint **/*.html **/*.js --ignore-pattern *.min.js --fix || true",
+    "serve": "concurrently 'cd $banner && serve' 'opn http://localhost:5000'"
+  },
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "eslint": "^5.9.0",
+    "eslint-config-google": "^0.11.0",
+    "eslint-plugin-html": "^5.0.0",
+    "lite-server": "^2.4.0",
+    "minimist": "^1.2.0",
+    "opn": "^5.4.0",
+    "opn-cli": "^4.0.0",
+    "serve": "^10.1.1"
+  },
+  "license": "UNLICENCED"
+}
