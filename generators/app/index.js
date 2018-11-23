@@ -15,41 +15,69 @@ module.exports = class extends Generator {
     this.log(yosay('generator-z-banner ' + chalk.green(`v${version}`)));
     const prompts = [
       {
-        type: 'text',
-        name: 'width',
-        message: 'Which is the banner width?',
-        default: '300'
-      },
-      {
-        type: 'text',
-        name: 'height',
-        message: 'Which is the banner height?',
-        default: '600'
-      },
-      {
         type: 'list',
-        name: 'sdk',
-        message: 'Which platform you want to use?',
-        choices: ['standard', 'sizmek', 'doubleclick']
-      },
-      {
-        type: 'list',
-        name: 'type',
-        message: 'Which type of banner you want to create?',
-        choices: ['css animation', 'image jpeg', 'image gif']
+        name: 'psd',
+        message: 'Create a banner from PSD file?',
+        choices: ['Yes', 'No'],
+        default: 'No'
       }
     ];
     return this.prompt(prompts).then(props => {
       this.props = props;
-      this.props.type = this.props.type === 'css animation' ? 'css' : this.props.type;
-      this.props.type = this.props.type === 'image jpeg' ? 'jpg' : this.props.type;
-      this.props.type = this.props.type === 'image gif' ? 'gif' : this.props.type;
+
+      const prompt = () => {
+        const prompts = [
+          {
+            type: 'list',
+            name: 'sdk',
+            message: 'Which platform you want to use?',
+            choices: ['standard', 'sizmek', 'doubleclick']
+          },
+          {
+            type: 'list',
+            name: 'type',
+            message: 'Which type of banner you want to create?',
+            choices: ['css animation', 'image jpeg', 'image gif']
+          }
+        ];
+        return this.prompt(prompts).then(props => {
+          this.props = props;
+          this.props.type = this.props.type === 'css animation' ? 'css' : this.props.type;
+          this.props.type = this.props.type === 'image jpeg' ? 'jpg' : this.props.type;
+          this.props.type = this.props.type === 'image gif' ? 'gif' : this.props.type;
+        });
+      };
+      if (this.props.psd === 'Yes') {
+        this.width = 400;
+        this.height = 500;
+
+        return prompt();
+      }
+      const prompts = [
+        {
+          type: 'text',
+          name: 'width',
+          message: 'Which is the banner width?',
+          default: '300'
+        },
+        {
+          type: 'text',
+          name: 'height',
+          message: 'Which is the banner height?',
+          default: '600'
+        }
+      ];
+      return this.prompt(prompts).then(props => {
+        this.width = Number(props.width);
+        this.height = Number(props.height);
+        return prompt();
+      });
     });
   }
 
   writing() {
-    this.props.width = Number(this.props.width);
-    this.props.height = Number(this.props.height);
+    this.props.width = this.width;
+    this.props.height = this.height;
     const folder = `${this.props.width}x${this.props.height}`;
     this.fs.copyTpl(
       this.templatePath(`package.json`),
