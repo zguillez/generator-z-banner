@@ -31,6 +31,18 @@ Finally, initiate the generator:
 yo z-banner
 ```
 
+## Requeriments
+
+### [Nodejs](https://nodejs.org)
+
+**Documentation:**
+- [https://nodejs.org](https://nodejs.org)
+
+### [Yarn](https://yarnpkg.com)
+
+**Documentation:**
+- [https://yarnpkg.com](https://yarnpkg.com)
+
 # Banner configuration
 * Select banner width
 * Select banner height
@@ -41,7 +53,6 @@ yo z-banner
 
 * Check javascript code ```yarn lint```
 * Display banner in localhost: ```banner=300x600 yarn serve```
-
 
 # Contributing and issues
 Contributors are welcome, please fork and send pull requests! If you have any ideas on how to make this project better then please submit an issue or send me an [email](mailto:mail@zguillez.io).
