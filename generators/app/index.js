@@ -7,6 +7,8 @@ const fs = require('fs');
 const path = require('path');
 const Jimp = require('jimp');
 const { GifFrame, GifUtil } = require('gifwrap');
+const PSD = require('psd');
+const pngToJpg = require('png-jpg');
 const version = JSON.parse(
   fs.readFileSync(path.resolve(__dirname, '../../') + '/package.json')
 ).version;
@@ -47,11 +49,27 @@ module.exports = class extends Generator {
           this.props.type = this.props.type === 'image gif' ? 'gif' : this.props.type;
         });
       };
+      this.psd = false;
       if (this.props.psd === 'Yes') {
-        this.width = 400;
-        this.height = 500;
-
-        return prompt();
+        this.psd = true;
+        const prompts = [
+          {
+            type: 'text',
+            name: 'filename',
+            message: 'Filename:'
+          }
+        ];
+        return this.prompt(prompts).then(props => {
+          /**
+           * Medidas a partir de PSD
+           */
+          this.psdFilename = props.filename;
+          const psd = PSD.fromFile(this.psdFilename);
+          psd.parse();
+          this.width = psd.tree().export().document.width;
+          this.height = psd.tree().export().document.height;
+          return prompt();
+        });
       }
       const prompts = [
         {
@@ -114,73 +132,97 @@ module.exports = class extends Generator {
         this.destinationPath(`${folder}/config.js`)
       );
     }
-    /**
-     * Img backup
-     */
-    new Jimp(this.props.width, this.props.height, 0x00000000, (err, image) => {
-      if (!err) {
-        Jimp.loadFont(Jimp.FONT_SANS_32_WHITE).then(font => {
-          image.opaque();
-          image.print(
-            font,
-            0,
-            0,
+    if (this.psd) {
+      /**
+       * PSD backup
+       */
+      PSD.open(this.psdFilename).then(psd => {
+        psd.image.saveAsPng(`${this.width}x${this.height}/default.png`).then(
+          pngToJpg(
             {
-              text: folder,
-              alignmentX: Jimp.HORIZONTAL_ALIGN_CENTER,
-              alignmentY: Jimp.VERTICAL_ALIGN_MIDDLE
+              input: `${this.width}x${this.height}/default.png`,
+              output: `${this.width}x${this.height}/default.jpg`,
+              options: {
+                quality: 40
+              }
             },
-            this.props.width,
-            this.props.height
-          );
-          if (this.props.type === 'gif') {
-            let frame = new GifFrame(this.props.width, this.props.height, {
-              delayCentisecs: 100
-            });
-            frame.bitmap = image.bitmap;
-            GifUtil.write(`${folder}/default.gif`, [frame]);
-          } else {
-            image.quality(80);
-            image.write(`${folder}/default.jpg`);
-          }
-        });
-      }
-    });
-    /**
-     * Dummy Images
-     */
-    const createImage = (name, ext, text, color = 0x00000000) => {
-      new Jimp(this.props.width, this.props.height, color, (err, image) => {
+            () => {
+              fs.unlink(`${this.width}x${this.height}/default.png`, err => {
+                if (err) return console.log(err);
+              });
+            }
+          )
+        );
+      });
+    } else {
+      /**
+       * Dummy backup
+       */
+      new Jimp(this.props.width, this.props.height, 0x00000000, (err, image) => {
         if (!err) {
           Jimp.loadFont(Jimp.FONT_SANS_32_WHITE).then(font => {
-            if (ext === 'jpg') {
-              image.opaque();
-            }
+            image.opaque();
             image.print(
               font,
               0,
               0,
               {
-                text: text,
+                text: folder,
                 alignmentX: Jimp.HORIZONTAL_ALIGN_CENTER,
                 alignmentY: Jimp.VERTICAL_ALIGN_MIDDLE
               },
               this.props.width,
               this.props.height
             );
-            image.quality(80);
-            image.write(`${folder}/images/${name}.${ext}`);
+            if (this.props.type === 'gif') {
+              let frame = new GifFrame(this.props.width, this.props.height, {
+                delayCentisecs: 100
+              });
+              frame.bitmap = image.bitmap;
+              GifUtil.write(`${folder}/default.gif`, [frame]);
+            } else {
+              image.quality(80);
+              image.write(`${folder}/default.jpg`);
+            }
           });
         }
       });
-    };
-    if (this.props.type === 'css') {
-      createImage('bg1', 'jpg', '', 0x00000000);
-      createImage('bg2', 'jpg', '', 0xff220000);
-      createImage('txt1', 'png', 'text1');
-      createImage('txt2', 'png', 'text2');
-      createImage('txt3', 'png', 'text3');
-      createImage('txt4', 'png', 'text4');
+      /**
+       * Dummy Images
+       */
+      const createImage = (name, ext, text, color = 0x00000000) => {
+        new Jimp(this.props.width, this.props.height, color, (err, image) => {
+          if (!err) {
+            Jimp.loadFont(Jimp.FONT_SANS_32_WHITE).then(font => {
+              if (ext === 'jpg') {
+                image.opaque();
+              }
+              image.print(
+                font,
+                0,
+                0,
+                {
+                  text: text,
+                  alignmentX: Jimp.HORIZONTAL_ALIGN_CENTER,
+                  alignmentY: Jimp.VERTICAL_ALIGN_MIDDLE
+                },
+                this.props.width,
+                this.props.height
+              );
+              image.quality(80);
+              image.write(`${folder}/images/${name}.${ext}`);
+            });
+          }
+        });
+      };
+      if (this.props.type === 'css') {
+        createImage('bg1', 'jpg', '', 0x00000000);
+        createImage('bg2', 'jpg', '', 0xff220000);
+        createImage('txt1', 'png', 'text1');
+        createImage('txt2', 'png', 'text2');
+        createImage('txt3', 'png', 'text3');
+        createImage('txt4', 'png', 'text4');
+      }
     }
   }
 

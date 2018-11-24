@@ -37,6 +37,8 @@
     "chalk": "^2.1.0",
     "gifwrap": "^0.7.5",
     "jimp": "^0.5.6",
+    "png-jpg": "^0.0.2",
+    "psd": "^3.2.0",
     "yeoman-generator": "^2.0.1",
     "yosay": "^2.0.1"
   },
