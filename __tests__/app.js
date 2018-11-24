@@ -6,6 +6,7 @@ const helpers = require('yeoman-test');
 describe('generator-z-banner:app', () => {
   beforeAll(() => {
     return helpers.run(path.join(__dirname, '../generators/app')).withPrompts({
+      psd: 'No',
       width: '300',
       height: '600',
       sdk: 'standard',
