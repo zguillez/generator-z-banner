@@ -9,6 +9,7 @@ const Jimp = require('jimp');
 const { GifFrame, GifUtil } = require('gifwrap');
 const PSD = require('psd');
 const pngToJpg = require('png-jpg');
+const zfile = require('z-file');
 const version = JSON.parse(
   fs.readFileSync(path.resolve(__dirname, '../../') + '/package.json')
 ).version;
@@ -26,7 +27,6 @@ module.exports = class extends Generator {
     ];
     return this.prompt(prompts).then(props => {
       this.props = props;
-
       const prompt = () => {
         const prompts = [
           {
@@ -136,57 +136,21 @@ module.exports = class extends Generator {
       /**
        * PSD backup
        */
-      PSD.open(this.psdFilename).then(psd => {
-        psd.image.saveAsPng(`${this.width}x${this.height}/default.png`).then(
-          pngToJpg(
-            {
-              input: `${this.width}x${this.height}/default.png`,
-              output: `${this.width}x${this.height}/default.jpg`,
-              options: {
-                quality: 40
-              }
-            },
-            () => {
-              fs.unlink(`${this.width}x${this.height}/default.png`, err => {
-                if (err) return console.log(err);
-              });
-            }
-          )
-        );
-      });
+      zfile
+        .psdToJpg(this.psdFilename, `${this.width}x${this.height}/default.jpg`, 40)
+        .then(() => console.log('ok'))
+        .catch(err => console.log(err));
     } else {
       /**
        * Dummy backup
        */
-      new Jimp(this.props.width, this.props.height, 0x00000000, (err, image) => {
-        if (!err) {
-          Jimp.loadFont(Jimp.FONT_SANS_32_WHITE).then(font => {
-            image.opaque();
-            image.print(
-              font,
-              0,
-              0,
-              {
-                text: folder,
-                alignmentX: Jimp.HORIZONTAL_ALIGN_CENTER,
-                alignmentY: Jimp.VERTICAL_ALIGN_MIDDLE
-              },
-              this.props.width,
-              this.props.height
-            );
-            if (this.props.type === 'gif') {
-              let frame = new GifFrame(this.props.width, this.props.height, {
-                delayCentisecs: 100
-              });
-              frame.bitmap = image.bitmap;
-              GifUtil.write(`${folder}/default.gif`, [frame]);
-            } else {
-              image.quality(80);
-              image.write(`${folder}/default.jpg`);
-            }
-          });
-        }
-      });
+      const ext = this.props.type === 'gif' ? 'gif' : 'jpg';
+      zfile.dummy(
+        this.props.width,
+        this.props.height,
+        0x00000000,
+        `${folder}/default.${ext}`
+      );
       /**
        * Dummy Images
        */

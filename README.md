@@ -33,15 +33,9 @@ yo z-banner
 
 ## Requeriments
 
-### [Nodejs](https://nodejs.org)
-
-**Documentation:**
-- [https://nodejs.org](https://nodejs.org)
-
-### [Yarn](https://yarnpkg.com)
-
-**Documentation:**
-- [https://yarnpkg.com](https://yarnpkg.com)
+* [https://nodejs.org](https://nodejs.org)
+* [https://yarnpkg.com](https://yarnpkg.com)
+* [https://yeoman.io](yeoman.io)
 
 # Banner configuration
 * Select banner width
