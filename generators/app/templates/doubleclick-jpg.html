@@ -55,7 +55,7 @@
   function startAd() {
     addEvent(document.querySelector('#content'), 'click', function() {
       console.log('click-content');
-      EB.clickthrough();
+      Enabler.exit('CONTENT-CLICK');
     });
   }
 </script>
